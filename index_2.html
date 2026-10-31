@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Pokémon</title>
+    <meta name="description" content="Explora diferentes Pokémon consumiendo la PokéAPI.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            safelist: ['absolute', 'top-2', 'right-3', 'text-2xl', 'transition', 'hover:scale-110', 'focus:outline-none', 'text-red-500', 'text-slate-300']
+        }
+    </script>
+    <style>
+        body, input, select { font-family: 'Work Sans', sans-serif; }
+        h1, h2, h3, .font-display, button { font-family: 'Baloo 2', cursive; }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+        /* Pequeña animación para el cambio de imagen Shiny */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#EDEFF3] text-[#1F2340] leading-relaxed">
+
+    <header class="relative overflow-hidden border-b-[6px] border-[#1F2340] bg-[#E3350D] px-6 pb-14 pt-12 text-center text-[#FFF6E9]">
+        <div class="absolute -right-[70px] -top-[70px] flex h-[240px] w-[240px] items-center justify-center rounded-full border-[26px] border-white/15" aria-hidden="true">
+            <div class="h-[45%] w-[45%] rounded-full bg-white/15"></div>
+        </div>
+        <h1 class="relative mb-2 text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-wide">Explorador de Pokémon</h1>
+        <p class="relative mx-auto max-w-[46ch] text-[1.05rem] text-[#FFE8D6]">Descubre diferentes Pokémon consumiendo la PokéAPI.</p>
+    </header>
+
+    <nav id="menu" class="relative mx-auto -mt-6 mb-8 flex w-11/12 max-w-fit flex-wrap justify-center gap-2 rounded-[20px] bg-white p-2 shadow-[0_8px_20px_rgba(31,35,64,0.15)] sm:gap-3 sm:rounded-full">
+        <a href="#" data-vista="todos" class="rounded-full px-4 py-2 text-sm font-semibold text-[#1F2340] transition-colors bg-[#FFCB05] hover:bg-[#FFCB05] sm:px-5 sm:text-base">Todos los Pokémon</a>
+        <a href="#" data-vista="favoritos" class="rounded-full px-4 py-2 text-sm font-semibold text-[#1F2340] transition-colors hover:bg-[#FFCB05] sm:px-5 sm:text-base bg-transparent">Mis Favoritos</a>
+    </nav>
+
+    <main id="inicio" class="mx-auto max-w-[980px] px-6 pb-16">
+        <section class="mb-12 rounded-[28px] border-[6px] border-[#B92A0B] bg-[#1F2340] px-[clamp(1.25rem,4vw,2.5rem)] py-8 text-[#F4F6FF]">
+            <h2 id="titulo-seccion" class="mb-4 text-[1.6rem] font-bold text-[#F4F6FF]">Buscar Pokémon</h2>
+            
+            <form id="form-busqueda" class="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-5" role="search">
+                <div class="flex flex-1 flex-col gap-1.5 sm:basis-[200px]">
+                    <label for="busqueda" class="text-[0.85rem] font-semibold text-[#C7CCEE]">Ingresa el nombre del Pokémon</label>
+                    <input type="search" id="busqueda" placeholder="Ejemplo: Pikachu"
+                           class="w-full rounded-[10px] bg-[#2C3161] px-3.5 py-2.5 text-base text-[#F4F6FF] placeholder-[#9AA0D4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCB05]">
+                </div>
+
+                <div class="flex flex-1 flex-col gap-1.5 sm:basis-[200px]">
+                    <label for="filtro" class="text-[0.85rem] font-semibold text-[#C7CCEE]">Filtrar por tipo</label>
+                    <select id="filtro" class="w-full rounded-[10px] bg-[#2C3161] px-3.5 py-2.5 text-base text-[#F4F6FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCB05]">
+                        <option value="">Todos los tipos</option>
+                        <option value="fire">Fuego (Fire)</option>
+                        <option value="water">Agua (Water)</option>
+                        <option value="grass">Planta (Grass)</option>
+                        <option value="electric">Eléctrico (Electric)</option>
+                        <option value="psychic">Psíquico (Psychic)</option>
+                        <option value="rock">Roca (Rock)</option>
+                        <option value="normal">Normal (Normal)</option>
+                        <option value="bug">Bicho (Bug)</option>
+                        <option value="fairy">Hada (Fairy)</option>
+                        <option value="ghost">Fantasma (Ghost)</option>
+                        <option value="dragon">Dragón (Dragon)</option>
+                        <option value="ground">Tierra (Ground)</option>
+                        <option value="poison">Veneno (Poison)</option>
+                        <option value="fighting">Lucha (Fighting)</option>
+                        <option value="steel">Acero (Steel)</option>
+                        <option value="dark">Siniestro (Dark)</option>
+                        <option value="ice">Hielo (Ice)</option>
+                    </select>
+                </div>
+            </form>
+        </section>
+
+        <section class="mt-6">
+            <p id="contador" class="mb-2 text-[1.1rem] font-bold text-[#1F2340]"></p>
+            <div id="grilla-pokemon" class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- JavaScript dibujará las tarjetas aquí adentro -->
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <button id="btn-mas" type="button" hidden class="rounded-[10px] bg-[#1F2340] px-8 py-3 text-base font-bold text-[#F4F6FF] transition hover:bg-[#2C3161] disabled:opacity-50 disabled:cursor-not-allowed">
+                Cargar más Pokémon
+            </button>
+        </div>
+    </main>
+
+    <footer class="bg-[#1F2340] p-8 text-center text-[0.9rem] text-[#C7CCEE]">
+        <p>Creado por: Jose Seir Victoria</p>
+        <p>Curso: Desarrollo Web 1</p>
+        <p><a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer" class="text-[#FFCB05] hover:underline">Documentación de PokéAPI</a></p>
+    </footer>
+
+    <!-- 1. MODAL ORIGINAL (BÁSICO) -->
+    <dialog id="modal-detalle" aria-labelledby="modal-nombre" class="m-auto w-full max-w-sm overflow-hidden rounded-[28px] bg-[#EDEFF3] p-0 shadow-2xl backdrop:bg-[#1F2340]/70 backdrop:backdrop-blur-sm">
+        <div class="bg-white p-8 text-center relative">
+            <span id="modal-tipo" class="mb-3 inline-block rounded-full bg-slate-200 px-3 py-1 text-[0.75rem] font-bold tracking-[0.3px] uppercase">Tipo</span>
+            <button id="btn-sonido" type="button" class="absolute top-8 right-8 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl shadow transition hover:scale-110 hover:bg-[#FFCB05]" title="Escuchar Grito">🔊</button>
+            <img id="modal-img" src="" alt="" class="mx-auto max-w-[180px]">
+        </div>
+        <div class="p-6 text-[#1F2340]">
+            <h2 id="modal-nombre" class="mb-2 text-center text-[2rem] font-bold">Nombre</h2>
+            <div class="mt-2 flex justify-center gap-4 text-sm font-semibold text-[#47496B]">
+                <p>Altura: <span id="modal-altura"></span></p>
+                <p>Peso: <span id="modal-peso"></span></p>
+            </div>
+            <p class="mt-4 text-center text-[0.85rem] text-[#47496B]">
+                <strong>Habilidades:</strong> <span id="modal-habilidades" class="capitalize"></span>
+            </p>
+            <div class="mt-4 space-y-3 text-[0.85rem] font-bold">
+                <!-- Barras básicas... -->
+                <div class="flex items-center justify-between"><span class="w-16">HP</span><span id="modal-hp-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-hp-bar" class="h-2.5 rounded-full bg-green-500 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-16">Ataque</span><span id="modal-atk-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-atk-bar" class="h-2.5 rounded-full bg-red-500 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-16">Defensa</span><span id="modal-def-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-def-bar" class="h-2.5 rounded-full bg-blue-500 transition-all duration-500" style="width: 0%"></div></div></div>
+            </div>
+            <form method="dialog" class="mt-8">
+                <button id="btn-cerrar-modal" class="w-full rounded-[10px] bg-[#FFCB05] py-2.5 font-bold text-[#1F2340] transition hover:bg-[#FFE066]">Cerrar</button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- 2. NUEVO MODAL AVANZADO (DATOS EXTRA) -->
+    <dialog id="modal-avanzado" class="m-auto w-full max-w-md overflow-hidden rounded-[28px] bg-[#1F2340] p-0 shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-md text-[#F4F6FF]">
+        
+        <!-- Cabecera interactiva Shiny -->
+        <div class="bg-[#2C3161] p-6 text-center relative border-b-4 border-[#FFCB05]">
+            <button id="btn-shiny-toggle" type="button" class="absolute top-4 left-4 rounded-[8px] bg-[#1F2340] px-3 py-1 text-xs font-bold text-[#FFCB05] transition hover:bg-[#FFCB05] hover:text-[#1F2340] border border-[#FFCB05]">
+                ✨ Ver Shiny
+            </button>
+            <span class="absolute top-4 right-4 text-xs font-bold text-[#9AA0D4]">EXP Base: <span id="modal-adv-exp" class="text-white">0</span></span>
+            
+            <img id="modal-adv-img" src="" alt="" class="mx-auto max-w-[180px] drop-shadow-2xl fade-in mt-4">
+            <h2 id="modal-adv-nombre" class="mt-2 text-center text-[2rem] font-bold text-white">Nombre</h2>
+        </div>
+        
+        <div class="p-6">
+            <!-- Estadísticas Especiales -->
+            <h3 class="mb-3 text-sm font-bold uppercase tracking-wider text-[#9AA0D4]">Estadísticas Especiales</h3>
+            <div class="space-y-3 text-[0.85rem] font-bold">
+                <div class="flex items-center justify-between"><span class="w-24">Velocidad</span><span id="modal-adv-spd-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd-bar" class="h-2.5 rounded-full bg-yellow-400 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-24">Atq. Especial</span><span id="modal-adv-spa-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spa-bar" class="h-2.5 rounded-full bg-purple-500 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-24">Def. Especial</span><span id="modal-adv-spd2-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd2-bar" class="h-2.5 rounded-full bg-blue-400 transition-all duration-500" style="width: 0%"></div></div></div>
+            </div>
+
+            <!-- Movimientos -->
+            <h3 class="mt-6 mb-3 text-sm font-bold uppercase tracking-wider text-[#9AA0D4]">Ataques Destacados</h3>
+            <div id="modal-adv-moves" class="flex flex-wrap gap-2 text-xs font-semibold capitalize">
+                <!-- Se inyectan spans aquí -->
+            </div>
+            
+            <form method="dialog" class="mt-8">
+                <button id="btn-cerrar-adv" class="w-full rounded-[10px] bg-[#47496B] py-2.5 font-bold text-white transition hover:bg-rose-500">Cerrar Detalles</button>
+            </form>
+        </div>
+    </dialog>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

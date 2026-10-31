@@ -1,0 +1,25 @@
+{
+  "name": "proyecto-programacion-web-1---explorador-interactivo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseseir-ops/explorador_interactivo_2026_2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/joseseir-ops/explorador_interactivo_2026_2/issues"
+  },
+  "homepage": "https://github.com/joseseir-ops/explorador_interactivo_2026_2#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
