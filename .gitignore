@@ -1,3 +1,13 @@
-# Dependencias de Node
+# Dependencias: se reinstalan con npm install / npm ci
 node_modules/
+
+# CSS generado por Tailwind: lo produce npm run build (en tu máquina, en el CI y en Vercel)
+css/tailwind.css
+
+# Archivos de entorno: nunca se suben (hoy no tenemos ninguno, pero el hábito se crea ya)
+.env
+.env.*
+
+# Basura del sistema operativo
 .DS_Store
+Thumbs.db
