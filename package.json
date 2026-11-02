@@ -1,13 +1,18 @@
 {
-  "dependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3"
+  "name": "explorador-interactivo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --watch",
+    "build": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css",
+    "validar": "html-validate index.html"
   },
   "devDependencies": {
-    "html-validate": "^11.17.0"
+    "@tailwindcss/cli": "^4.3.3",
+    "html-validate": "^11.18.0",
+    "tailwindcss": "^4.3.3"
   },
-  "scripts": {
-    "build": "tailwindcss -i ./css/input.css -o ./css/tailwind.css",
-    "validar": "html-validate \"*.html\""
+  "allowScripts": {
+    "@parcel/watcher@2.5.1": true
   }
 }
