@@ -76,6 +76,7 @@
                         <option value="ice">Hielo (Ice)</option>
                     </select>
                 </div>
+                <button type="submit" class="sr-only">Buscar</button>
             </form>
         </section>
 
@@ -104,7 +105,7 @@
         <div class="bg-white p-8 text-center relative">
             <span id="modal-tipo" class="mb-3 inline-block rounded-full bg-slate-200 px-3 py-1 text-[0.75rem] font-bold tracking-[0.3px] uppercase">Tipo</span>
             <button id="btn-sonido" type="button" class="absolute top-8 right-8 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-xl shadow transition hover:scale-110 hover:bg-[#FFCB05]" title="Escuchar Grito">🔊</button>
-            <img id="modal-img" src="" alt="" class="mx-auto max-w-[180px]">
+            <img id="modal-img" src="#" alt="" class="mx-auto max-w-[180px]">
         </div>
         <div class="p-6 text-[#1F2340]">
             <h2 id="modal-nombre" class="mb-2 text-center text-[2rem] font-bold">Nombre</h2>
@@ -117,12 +118,12 @@
             </p>
             <div class="mt-4 space-y-3 text-[0.85rem] font-bold">
                 <!-- Barras básicas... -->
-                <div class="flex items-center justify-between"><span class="w-16">HP</span><span id="modal-hp-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-hp-bar" class="h-2.5 rounded-full bg-green-500 transition-all duration-500" style="width: 0%"></div></div></div>
-                <div class="flex items-center justify-between"><span class="w-16">Ataque</span><span id="modal-atk-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-atk-bar" class="h-2.5 rounded-full bg-red-500 transition-all duration-500" style="width: 0%"></div></div></div>
-                <div class="flex items-center justify-between"><span class="w-16">Defensa</span><span id="modal-def-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-def-bar" class="h-2.5 rounded-full bg-blue-500 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-16">HP</span><span id="modal-hp-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-hp-bar" class="h-2.5 rounded-full bg-green-500 transition-all duration-500"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-16">Ataque</span><span id="modal-atk-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-atk-bar" class="h-2.5 rounded-full bg-red-500 transition-all duration-500"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-16">Defensa</span><span id="modal-def-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-def-bar" class="h-2.5 rounded-full bg-blue-500 transition-all duration-500"></div></div></div>
             </div>
             <form method="dialog" class="mt-8">
-                <button id="btn-cerrar-modal" class="w-full rounded-[10px] bg-[#FFCB05] py-2.5 font-bold text-[#1F2340] transition hover:bg-[#FFE066]">Cerrar</button>
+                <button id="btn-cerrar-modal" type="button" class="w-full rounded-[10px] bg-[#FFCB05] py-2.5 font-bold text-[#1F2340] transition hover:bg-[#FFE066]">Cerrar</button>
             </form>
         </div>
     </dialog>
@@ -137,7 +138,7 @@
             </button>
             <span class="absolute top-4 right-4 text-xs font-bold text-[#9AA0D4]">EXP Base: <span id="modal-adv-exp" class="text-white">0</span></span>
             
-            <img id="modal-adv-img" src="" alt="" class="mx-auto max-w-[180px] drop-shadow-2xl fade-in mt-4">
+            <img id="modal-adv-img" src="#" alt="" class="mx-auto max-w-[180px] drop-shadow-2xl fade-in mt-4">
             <h2 id="modal-adv-nombre" class="mt-2 text-center text-[2rem] font-bold text-white">Nombre</h2>
         </div>
         
@@ -145,9 +146,9 @@
             <!-- Estadísticas Especiales -->
             <h3 class="mb-3 text-sm font-bold uppercase tracking-wider text-[#9AA0D4]">Estadísticas Especiales</h3>
             <div class="space-y-3 text-[0.85rem] font-bold">
-                <div class="flex items-center justify-between"><span class="w-24">Velocidad</span><span id="modal-adv-spd-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd-bar" class="h-2.5 rounded-full bg-yellow-400 transition-all duration-500" style="width: 0%"></div></div></div>
-                <div class="flex items-center justify-between"><span class="w-24">Atq. Especial</span><span id="modal-adv-spa-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spa-bar" class="h-2.5 rounded-full bg-purple-500 transition-all duration-500" style="width: 0%"></div></div></div>
-                <div class="flex items-center justify-between"><span class="w-24">Def. Especial</span><span id="modal-adv-spd2-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd2-bar" class="h-2.5 rounded-full bg-blue-400 transition-all duration-500" style="width: 0%"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-24">Velocidad</span><span id="modal-adv-spd-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd-bar" class="h-2.5 rounded-full bg-yellow-400 transition-all duration-500"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-24">Atq. Especial</span><span id="modal-adv-spa-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spa-bar" class="h-2.5 rounded-full bg-purple-500 transition-all duration-500"></div></div></div>
+                <div class="flex items-center justify-between"><span class="w-24">Def. Especial</span><span id="modal-adv-spd2-txt" class="w-8 text-right text-[#9AA0D4]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-[#1F2340] border border-[#47496B]"><div id="modal-adv-spd2-bar" class="h-2.5 rounded-full bg-blue-400 transition-all duration-500"></div></div></div>
             </div>
 
             <!-- Movimientos -->
@@ -157,7 +158,7 @@
             </div>
             
             <form method="dialog" class="mt-8">
-                <button id="btn-cerrar-adv" class="w-full rounded-[10px] bg-[#47496B] py-2.5 font-bold text-white transition hover:bg-rose-500">Cerrar Detalles</button>
+                <button id="btn-cerrar-adv" type="button" class="w-full rounded-[10px] bg-[#47496B] py-2.5 font-bold text-white transition hover:bg-rose-500">Cerrar Detalles</button>
             </form>
         </div>
     </dialog>
