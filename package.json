@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "tailwindcss -i ./css/entrada.css -o ./css/tailwind.css --watch",
-    "build": "tailwindcss -i ./css/entrada.css -o ./css/tailwind.css",
+    "build": "tailwindcss -i ./css/input.css -o ./css/tailwind.css",
     "validar": "html-validate index.html"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "html-validate": "^11.16.2",
+    "html-validate": "^11.18.0",
     "tailwindcss": "^4.3.3"
   }
 }
