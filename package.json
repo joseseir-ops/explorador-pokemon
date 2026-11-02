@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./css/input.css -o ./css/tailwind.css --watch",
     "build": "tailwindcss -i ./css/input.css -o ./css/tailwind.css",
-    "validar": "html-validate index.html"
+    "validar": "html-validate \"*.html\""
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
