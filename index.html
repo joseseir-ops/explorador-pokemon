@@ -109,9 +109,9 @@
                 <div class="flex items-center justify-between"><span class="w-16">Ataque</span><span id="modal-atk-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-atk-bar" class="h-2.5 rounded-full bg-red-500 transition-all duration-500"></div></div></div>
                 <div class="flex items-center justify-between"><span class="w-16">Defensa</span><span id="modal-def-text" class="w-8 text-right text-[#47496B]">0</span><div class="ml-2 h-2.5 flex-1 rounded-full bg-slate-200"><div id="modal-def-bar" class="h-2.5 rounded-full bg-blue-500 transition-all duration-500"></div></div></div>
             </div>
-            <form method="dialog" class="mt-8">
-                <button id="btn-cerrar-modal" type="button" class="w-full rounded-[10px] bg-[#FFCB05] py-2.5 font-bold text-[#1F2340] transition hover:bg-[#FFE066]">Cerrar</button>
-            </form>
+            <div class="mt-8">
+                <button id="btn-cerrar-modal" type="button" onclick="document.getElementById('modal-detalle').close()" class="w-full rounded-[10px] bg-[#FFCB05] py-2.5 font-bold text-[#1F2340] transition hover:bg-[#FFE066]">Cerrar</button>
+            </div>
         </div>
     </dialog>
     <!-- 2. NUEVO MODAL AVANZADO (DATOS EXTRA) -->
@@ -138,9 +138,9 @@
             <div id="modal-adv-moves" class="flex flex-wrap gap-2 text-xs font-semibold capitalize">
                 <!-- Se inyectan spans aquí -->
             </div>
-            <form method="dialog" class="mt-8">
-                <button id="btn-cerrar-adv" type="button" class="w-full rounded-[10px] bg-[#47496B] py-2.5 font-bold text-white transition hover:bg-rose-500">Cerrar Detalles</button>
-            </form>
+            <div class="mt-8">
+                <button id="btn-cerrar-adv" type="button" onclick="document.getElementById('modal-avanzado').close()" class="w-full rounded-[10px] bg-[#47496B] py-2.5 font-bold text-white transition hover:bg-rose-500">Cerrar Detalles</button>
+            </div>
         </div>
     </dialog>
     <script type="module" src="js/app.js"></script>
