@@ -22,7 +22,7 @@ jobs:
       - name: Instalar dependencias exactas del package-lock.json
         run: npm ci
 
-      - name: Compilar Tailwind
+      - name: Compilar tailwind
         run: npm run build
 
       - name: Validar el HTML
