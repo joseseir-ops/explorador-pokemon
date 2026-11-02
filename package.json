@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tailwindcss -i ./css/entrada.css -o ./css/tailwind.css --watch",
+    "dev": "tailwindcss -i ./css/input.css -o ./css/tailwind.css --watch",
     "build": "tailwindcss -i ./css/input.css -o ./css/tailwind.css",
     "validar": "html-validate index.html"
   },
