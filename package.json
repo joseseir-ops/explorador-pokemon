@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css --watch",
-    "build": "npx @tailwindcss/cli -i ./css/input.css -o ./css/tailwind.css",
+    "dev": "npx @tailwindcss/cli -i ./CSS/input.css -o ./CSS/tailwind.css --watch",
+    "build": "npx @tailwindcss/cli -i ./CSS/input.css -o ./CSS/tailwind.css",
     "validar": "html-validate index.html"
   },
   "devDependencies": {
